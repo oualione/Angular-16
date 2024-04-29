@@ -1,0 +1,52 @@
+<style>
+    /* Center align text */
+    .center-text {
+      text-align: center;
+    }
+  </style>
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <!-- Main Title -->
+        <h1 class="center-text mb-4">List of Categories</h1>
+        <!-- Form to Add Category -->
+        <div class="mb-4">
+          <div class="input-group">
+            <input type="text" #categoryLabel (input)="label.set(categoryLabel.value)" [value]="label()" (keyup.enter)="createOrUpdate()" class="form-control me-2" placeholder="Enter new category name">
+            <button *ngIf="id() !== 0" class="btn btn-primary" type="submit" (click)="update()">EDIT</button>
+            <div class="input-group-append">
+            </div>
+          </div>
+        </div>
+        <!-- List of Categories -->
+        <ul class="list-group">
+          <li class="list-group-item" 
+            (click)="isSelected(i)"
+            *ngFor="let category of categories() let i = index;"
+            [ngClass]="{'active' : selected() === i,
+            'list-group-item-warning' : selected() === i && mode() == 'edit',
+            'list-group-item-success' : selected() === i && mode() == 'update',
+            'list-group-item-danger' : selected() === i && mode() == 'delete',
+
+            }"
+            >
+            <div class="row">
+              <div class="col mt-2">
+                {{category.label}}
+              </div>
+              <div class="col text-end">
+                <button *ngIf="category.id" class="btn btn-danger me-1" (click)="deleteCategory(category.id)">Delete</button>
+                <button class="btn btn-warning" (click)="editCategory(category)">Edit</button>
+              </div>
+            </div>
+          </li>
+          <!-- Add more categories as needed -->
+        </ul>
+
+        <div class="col" *ngIf="categories().length === 0">
+          <h3 class="center-text">No Data Found</h3>
+        </div>
+      </div>
+    </div>
+  </div>

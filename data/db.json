@@ -1,0 +1,20 @@
+{
+  "users": [],
+  "articles": [],
+  "categories": [
+    {
+      "id": "8d0c",
+      "label": "book"
+    },
+    {
+      "id": "0beb",
+      "label": "Web"
+    },
+    {
+      "id": "36ce",
+      "label": "travel"
+    }
+  ],
+  "comments": [],
+  "tags": []
+}
